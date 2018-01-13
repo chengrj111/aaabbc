@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+   <head>
+       <meta charset="utf-8">
+       <title>新闻</title>
+       
+       
+       <script type="text/javascript">
+       window.onload=function(){
+           var obtn=document.getElementById("btn");
+           obtn.onclick=function(){
+               
+               
+               try{
+                   xhr = new XMLHttpRequest();
+                   
+               }catch(e){
+                   xhr =new ActiveXobject("microsoft.XMLHTTP")
+                   
+               }
+               xhr.open('get','newsList.php',true);
+               xhr.send();
+               
+               xhr.onreadystatechange = function(){
+                   
+                   
+                   
+                   
+                   
+                   if ( xhr.readyState == 4 ) {
+				if ( xhr.status == 200 ) {
+					
+					var data = JSON.parse( xhr.responseText );
+					
+					var oUl = document.getElementById('ul');
+					var html = '';
+					for (var i=0; i<data.length; i++) {
+						html += '<li><a href="">'+data[i].title+'</a> [<span>'+data[i].date+'</span>]</li>';
+					}
+					oUl.innerHTML = html;
+				} else {
+					alert('出错了,Err：' + xhr.status);
+				
+			}
+			
+		}
+
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+               }
+               
+               
+               
+           }
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+       }
+       
+       
+       </script>
+       
+   </head>
+   <body>
+       <input type="button" value="点击查看" id="btn">
+       <ul id="ul"></ul>
+       
+       
+       
+       
+   </body>
+    
+    
+    
+    
+    
+    
+</html>
