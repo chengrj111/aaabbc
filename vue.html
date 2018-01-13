@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        ul{list-style: none;background:#c7c7c7}
+       
+        ul li:first-child{
+            background: #35a0ff;margin-left: -38px
+        }
+        ul li a:first-child{padding-left: 38px}
+        
+        ul li a{color: aliceblue;text-decoration: none;line-height: 30px}
+        p {
+            width: 300px;
+            height: 300px;
+            background: red
+        }
+
+        .sl-enter-active,
+        .sl-leave-active {
+            transition: 1s all ease;
+        }
+
+        .sl-enter-active {
+            opacity: 1;
+            width: 300px;
+            height: 300px;
+
+
+        }
+
+        .sl-leave-active {
+            opacity: 0;
+            width: 100px;
+            height: 100px;
+        }
+
+        .sl-enter {
+            opacity: 0;
+            width: 100px;
+            height: 100px;
+        }
+
+        .sl-leave {
+            opacity: 1;
+            width: 1000px;
+            height: 1000px;
+        }
+
+    </style>
+    <script type="text/javascript" src="js/vue2.min.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li><a href="" @click="show=!show">首页</a></li>
+            <li><a href="" @click="show=!show">菜单1</a></li>
+            <li><a href="" @click="show=!show">菜单2</a></li>
+            <li><a href="" @click="show=!show">菜单3</a></li>
+            <li><a href="" @click="show=!show">菜单4</a></li>
+        </ul>
+        <transition name="sl" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @before-leave="beforeLeave" @leave="leave" @after-leave="afterLeave">
+            <p v-show="show" style="margin-left: 200px"></p>
+        </transition>
+    </div>
+
+</body>
+
+</html>
+<script type="text/javascript">
+    new Vue({
+        el: '#box',
+        data: {
+            show: false
+        },
+        methods: {
+            beforeEnter(el) {
+                console.log("动画enter之前")
+            },
+            enter(el) {
+                console.log("动画enter")
+            },
+            afterEnter(el) {
+                console.log("动画enter之后")
+                el.style.background = "blue"
+            },
+            beforeLeave(el) {
+                console.log("动画leave之前")
+            },
+            leave(el) {
+                console.log("动画leave")
+            },
+            afterLeave(el) {
+                console.log("动画leave之后")
+            }
+        }
+    })
+
+</script>
